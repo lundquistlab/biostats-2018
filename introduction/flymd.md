@@ -9,28 +9,20 @@ feature in RStudio.
 
 R is a statical software environment for the analysis of data and the
 production of graphics (R-project.org). Using R can be daunting for
-the uninitiated because 
-it is entirely command-line based. However, this is the greatest
-strength that R has because 
+the uninitiated because it is entirely command-line based. However, 
+this is the greatest strength that R has because 
 it is extremely flexible, customizable, and (for most things) fast. R
-is also free and open-source, 
-meaning that there are a lot of people out there that maintain the
-project and write 
+is also free and open-source, meaning that there are a lot of 
+people out there that maintain the project and write 
 specific statistical packages. There are plenty of other programs
-(SAS, SPSS, MATLAB, Excel) 
-out there that you can use to do data analysis but they are expensive
-and less customizable. 
+(SAS, SPSS, MATLAB, Excel) out there that you can use to do data 
+analysis but they are expensive and less customizable. 
 There are other software environments out there too (Python, Julia)
-for those who need a 
-little more speed and flexibility. R brings to the table some very
-powerful 
-analysis and graphics production tools in a package that is pretty
-easy to use 
-(once you get the hang of it). It is an attractive program for
-students and 
-professionals alike and is continuing to grow in interest and
-complexity. 
-Skills in data analysis with R is now becoming a must for many looking 
+for those who need a little more speed and flexibility. R brings to the table some very
+powerful analysis and graphics production tools in a package that is pretty
+easy to use (once you get the hang of it). It is an attractive program for
+students and professionals alike and is continuing to grow in interest and
+complexity. Skills in data analysis with R is now becoming a must for many looking 
 for graduate or professional positions and is a great addition to a
 resumé.
 
@@ -46,7 +38,7 @@ and you better home you didn't have any typos!
 The **BETTER** way of working with R is writing a plain text document 
 that has all of the R commands you will need and saving it with a ".R" 
 extension. Any command that you want to pass to R should be written
-down  in an .R file. You can save R commands in any format you want 
+down  in an .R file. You can save R commands in any format you want fLyMd-mAkEr
 (.docx, .txt) but if you want to be able to use it directly in R or 
 RStudio, you need to use the .R extension.
 
@@ -90,4 +82,4 @@ one named ```x``` and one named ```y``` in our
 
 [example script](screenshots/example_r.png)
 
-Plots can be saved using the ```Export`` drop down menu in RStudio.fLyMd-mAkEr
+Plots can be saved using the ```Export`` drop down menu in RStudio.

@@ -45,7 +45,8 @@ Instructions:
     repository into your project directory (bottom right).
     ![Project directory](screenshots/macos/project_directory.png)
 9. You can now navigate folders and open files directly in
-    RStudio. For example: <code>Open example.r</code> (top left)
+    RStudio. For example: <code>Open example.r</code> and it will open
+    in the built-in text editor (top left)
     ![Example.r](screenshots/macos/R_example.png)
 10. Frequently, content will be added and updated in the
     repository. To download the new content, you simply need to
