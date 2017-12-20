@@ -82,4 +82,4 @@ one named ```x``` and one named ```y``` in our
 
 [example script](screenshots/example_r.png)
 
-Plots can be saved using the ```Export`` drop down menu in RStudio.
+Plots can be saved using the ```Export``` drop down menu in RStudio.
