@@ -37,7 +37,6 @@ Windows
 
 Ubuntu
 
-More to come...
 
 # Useful links:
 
@@ -46,9 +45,3 @@ More to come...
 [Biologist's Analytic Toolkit](http://biotoolbox.binghamton.edu)
 
 [MyCourses](https://mycourses.binghamton.edu)
-no such identity: /Users/matt_l/.ssh/id_rsa:q: No such file or directory
-git@github.com: Permission denied (publickey).
-fatal: Could not read from remote repository.
-
-Please make sure you have the correct access rights
-and the repository exists.
