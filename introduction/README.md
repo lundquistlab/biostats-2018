@@ -61,28 +61,99 @@ and annotations to code using comments, <code>#</code>.
 Here is an example script:
 
 ```
-    ## Sample R script
-    ## Author: Matthew Lundquist
-    ## Date: 12-20-2017
+## Sample R script
+## Author: Matthew Lundquist
+## Date: 12-20-2017
 
-    ## Create vector of 10 random numbers between 1 and 1000 with replacement        
-    x <- sample(1:1000, 10, replace = T)
+## Create vector of 10 random numbers between 1 and 1000 with replacement        
+  x <- sample(1:1000, 10, replace = T)
 
-    ## Create another vector of 10 randowm numbers between 1 and 1000 with replacement
-    y <- sample(1:1000, 10, replace = T)
+## Create another vector of 10 randowm numbers between 1 and 1000 with replacement
+  y <- sample(1:1000, 10, replace = T)
 
-    ## plot the result
-    plot(x, y)
+## plot the result
+  plot(x, y)
 ```
 
 If you run this script in RStudio, you will end up with two vectors,
-one named ```x``` and one named ```y``` in our
-```Environment``` 
+one named ```x``` and one named ```y``` in your ```Environment``` 
 (top right) and a figure in your ```plot``` section (bottom right). 
 
-[example script](screenshots/example_r.png)
+![example script](screenshots/example_r.png)
 
 Plots can be saved using the ```Export``` drop down menu in RStudio.
 
-[export plot](screenshots/export.png)
+![export plot](screenshots/export.png)
 
+## Inputting data 
+
+The next step is to actually use R to input and analyze your data. 
+First we need data. In this case the data below, ```iris.txt```, is saved 
+as a text file. You can also save data as .csv (Comma Separated Value) 
+files. Data can be edited directly in those files using a text editor
+but it is easier just to use a spreadsheet application like Microsoft 
+Excel, Sheets, or Libre Office Calc and then saving them as a .csv.
+
+If you already ```Pulled``` this branch, you should already have ```iris.txt```.
+
+To input this data you first need to set your ```Working
+directory```. If you open ```example.r``` in RStudio, you
+simply need to navigate to ```Session > Set Working Directory > To Source File Location```.
+
+![set working directory](screenshots/set_wd.png)
+
+Then you can run the following commands
+
+```
+## Inputting data in R from .txt file
+  
+## Read in iris.txt and name it iris (make sure first row is
+## recognized as column names
+  iris <- read.table("iris.txt", h = T)
+     
+## Call the data to make sure it is inputted correctly
+  iris
+```
+
+Notice that there are **150 rows** of data and **five columns**. 
+Each row represents an individual iris flower. The first four columns 
+indicate what was measured from that flower. The last column
+identifies the species of the flower. 
+
+The first four columns are what we would call **numerical data**, 
+we can perform mathematical operations on them. The last column is 
+what we would call a **factor** or a **identifier** or a **grouping
+variable** for your data. In this case, the column "Species" 
+indicates from what species of iris the data was collected. 
+There are a total of three species (three factors) in this data set.
+
+## Basic Analysis
+
+Now that we have the data, we can start to analyze it. Here are a few
+functions to calculate means, median, SE, and SD.
+
+```
+## Mean Sepal.Length
+  sepal.mean <- mean(iris$Sepal.Length)
+  sepal.mean
+
+## Standard Deviation Sepal.Length
+  sepal.sd <- sd(iris$Sepal.Length)
+  sepal.sd
+   
+## Standard Error Sepal.Lenth
+  sepal.se <- sepal.sd/sqrt(length(iris$Sepal.Length))
+  sepal.se
+
+## Median Petal.Width
+  petal.median <- median(iris$Petal.Width)
+  petal.median
+
+## Mean Petal.Length for just setosa
+  setosa.petal <- mean(iris$Petal.Length[iris$Species == "setosa"])
+  setosa.petal
+
+## Summary statistics for all observations and factors
+  summary(iris)
+
+```
