@@ -19,14 +19,15 @@ For in-class activities, we  are going to use
 the built-in capabilities of RStudio to interface directly with this
 GitHub repository using the git version control software.
 
-Instructions:
+## Instructions
 
-## MacOS
+These are the instructions for MacOS, but they should be similar to
+what you need to do in Windows or Linux
 
 1.  Download latest version of <code>R</code> from
-    [cran.r-project.org](https://cran.r-project.org/bin/macosx/R-3.4.3.pkg)
+    [cran.r-project.org](https://cran.r-project.org)
 2.  Download the latest version of <code>RStudio</code> from 
-    [www.RStudio.org](https://download1.rstudio.org/RStudio-1.1.383.dmg)
+    [www.RStudio.org](https://www.rstudio.com/products/rstudio/download/)
 3.  Open RStudio.app 
     ![RStudio](screenshots/macos/RStudio.png)
 4.  Navigate to <code> File > New Project...</code> 
@@ -53,11 +54,6 @@ Instructions:
     <code>Pull</code> the code from the repository. Do this by
     navigating to <code>Tools > Version Control > Pull Branches</code> 
     ![Pull branches](screenshots/macos/pull_branches.png)
-
-## Windows
-
-## Ubuntu
-
 
 When in doubt, you can also get the files off of GitHub by downloading them
 manually. To do this:
