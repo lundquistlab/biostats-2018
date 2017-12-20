@@ -23,27 +23,35 @@ Instructions:
 
 ## MacOS
 
-1. Download latest version of <code>R</code> from
-   [cran.r-project.org](https://cran.r-project.org/bin/macosx/R-3.4.3.pkg)
-2. Download the latest version of <code>RStudio</code> from 
-   [www.RStudio.org](https://download1.rstudio.org/RStudio-1.1.383.dmg)
-3. Create a folder for your R code, for example "~/Desktop/biostats-2018"
-4. Open RStudio.app 
-   ![RStudio](screenshots/macos/RStudio.png)
-5. Navigate to <code> File > New Project...</code> 
-   ![New project](screenshots/macos/new_project.png)
-6. Choose <code>Version Control</code>
-   ![Version control](/screenshots/macos/choose_vc.png)
-7. Choose <code>Git</code>
-   ![Git](screenshots/macos/choose_git.png)
-8. Set <code>Repository URL:
-   https://github.com/mlundquist/biostats-2018 </code>
-   and set the <code>Project directory name:
-   ~/Desktop/biostats-2018</code> (or whatever directory you want to
-   use) then select <code>Create Project</code>
+1.  Download latest version of <code>R</code> from
+    [cran.r-project.org](https://cran.r-project.org/bin/macosx/R-3.4.3.pkg)
+2.  Download the latest version of <code>RStudio</code> from 
+    [www.RStudio.org](https://download1.rstudio.org/RStudio-1.1.383.dmg)
+3.  Open RStudio.app 
+    ![RStudio](screenshots/macos/RStudio.png)
+4.  Navigate to <code> File > New Project...</code> 
+    ![New project](screenshots/macos/new_project.png)
+5.  Choose <code>Version Control</code>
+    ![Version control](/screenshots/macos/choose_vc.png)
+6.  Choose <code>Git</code>
+    ![Git](screenshots/macos/choose_git.png)
+7.  Set <code>Repository URL:
+    https://github.com/mlundquist/biostats-2018 </code>
+    and set the <code>Project directory name:
+    biostats-2018</code> and set <code>~/Desktop</code>(or whatever directory you want to
+    use) then select <code>Create Project</code>
    ![Git info](screenshots/macos/git_location.png)
-9. At this point RStudio should download everything from this GitHub
-   repository into your project directory.
+8.  At this point RStudio should download everything from this GitHub
+    repository into your project directory (bottom right).
+    ![Project directory](screenshots/macos/project_directory.png)
+9. You can now navigate folders and open files directly in
+    RStudio. For example: <code>Open example.r</code> (top left)
+    ![Example.r](screenshots/macos/R_example.png)
+10. Frequently, content will be added and updated in the
+    repository. To download the new content, you simply need to
+    <code>Pull</code> the code from the repository. Do this by
+    navigating to <code>Tools > Version Control > Pull Branches</code> 
+    ![Pull branches](screenshots/macos/pull_branches.png)
 
 ## Windows
 
