@@ -157,3 +157,5 @@ functions to calculate means, median, SE, and SD.
   summary(iris)
 
 ```
+
+Try it out!
