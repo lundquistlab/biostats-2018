@@ -14,12 +14,41 @@ Orsini](http://readwrite.com/2013/09/30/understanding-github-a-journey-for-begin
 However, for this class you only need to know how to download content from the
 repo.
 
-
 For in-class activities, we  are going to use
 the built-in capabilities of RStudio to interface directly with this
 GitHub repository using the git version control software.
 
-## Instructions
+
+## Install Git
+
+Whether you are using MacOS, Windows, or Linux, you will need to
+download Git.
+
+MacOS:
+
+Download [Git for MacOS](https://git-scm.com/download/mac) and just
+follow the prompts.
+
+Windows:
+
+Download [Git for Windows](https://git-scm.com/download/win) and
+follow the prompts. The default settings should work fine.
+
+Ubuntu: 
+
+Open Terminal and type:
+
+```
+sudo apt-get update
+sudo apt-get install git
+```
+
+Thats it, now you have Git!
+
+
+## Install R and RStudio
+
+
 
 These are the instructions for MacOS, but they should be similar to
 what you need to do in Windows or Linux
