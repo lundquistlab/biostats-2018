@@ -45,10 +45,7 @@ sudo apt-get install git
 
 Thats it, now you have Git!
 
-
 ## Install R and RStudio
-
-
 
 These are the instructions for MacOS, but they should be similar to
 what you need to do in Windows or Linux
@@ -78,8 +75,8 @@ what you need to do in Windows or Linux
     RStudio. For example: <code>Open example.r</code> and it will open
     in the built-in text editor (top left)
     ![Example.r](screenshots/macos/R_example.png)
-10. Frequently, content will be added and updated in the
-    repository. To download the new content, you simply need to
+10. Content will be added and updated in the
+    repository frequently. To download the new content, you simply need to
     <code>Pull</code> the code from the repository. Do this by
     navigating to <code>Tools > Version Control > Pull Branches</code> 
     ![Pull branches](screenshots/macos/pull_branches.png)
@@ -98,6 +95,6 @@ manually. To do this:
 
 [TA Blog](http://www.lundquistecology.com/blog.html)
 
-[Biologist's Analytic Toolkit](http://biotoolbox.binghamton.edu)
+[Biologist's Analytic Toolkit by Dr. Bill Stein](http://biotoolbox.binghamton.edu)
 
 [MyCourses](https://mycourses.binghamton.edu)
