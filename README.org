@@ -61,7 +61,7 @@ what you need to do in Windows or Linux
 
 1.  Download latest version of =R= from
    [[https://cran.r-project.org][cran.r-project.org]]
-2.  Download the latest version of <code>RStudio</code> from 
+2.  Download the latest version of =RStudio= from 
     [[https://www.rstudio.com/products/rstudio/download/][www.RStudio.org]]
 3.  Open RStudio.app 
     [[screenshots/macos/RStudio.png]]
@@ -94,7 +94,7 @@ manually. To do this:
 
 1. Click on the folder that contains the file you are interested in.
 2. Click on the file you are interested in downloading.
-3. On the top right corner you will see a button that reads <code>Raw</code>.
+3. On the top right corner you will see a button that reads =Raw=.
 4. Right click on =Raw= and select "Save Linked File"
 5. Depending on your browser, it will either download automatically or you can choose where to download it on to your machine.
 6. You should now be able to read and edit the file.
