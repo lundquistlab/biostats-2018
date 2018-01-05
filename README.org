@@ -46,10 +46,8 @@ Ubuntu:
 Open Terminal and type:
 
 #+BEGIN_SRC :exports code
-
 sudo apt-get update
 sudo apt-get install git
-
 #+END_SRC
 
 Thats it, now you have Git!
