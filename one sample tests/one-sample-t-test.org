@@ -2,7 +2,6 @@
 #+AUTHOR: Matthew Lundquist
 #+EMAIL: mlundqu1@binghamton.edu
 #+DATE: 2018-1-1
-#+PANDOC_OPTIONS: docx:test.docx
 
 One-sample tests are useful when you are interested in if your
 particular sample from a population differs from the entire
