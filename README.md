@@ -45,7 +45,7 @@ sudo apt-get install git
 
 Thats it, now you have Git!
 
-## Install R and RStudio
+## Installing and using  R and RStudio
 
 These are the instructions for MacOS, but they should be similar to
 what you need to do in Windows or Linux
