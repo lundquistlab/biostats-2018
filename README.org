@@ -4,9 +4,6 @@
 #+DATE: 2018-1-1
 
 
-* Biostatistics with R
-
-
 (short URL: [[http://bit.ly/biostats18][bit.ly/biostats18]])
 
 This is the GitHub repository (repo) for Spg 2018 Biol 437/558
@@ -28,8 +25,6 @@ All lessons, examples, and assignments will be under labeled
 sub-directories in the repository. For each folder, there will be
 a =.org= file with all the information you need as well as any data or
 supplementary material.
-
-* Follow these steps to get started with R, RStudio, and Git (all required for discussion)
 
 ** Install Git
 
