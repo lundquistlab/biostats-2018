@@ -38,7 +38,7 @@ follow the prompts.
 
 Windows:
 
-Download [[https://git-scm.com/download/win][Git for windows]] and
+Download [[https://git-scm.com/download/win][Git for Windows]] and
 follow the prompts. The default settings should work fine.
 
 Ubuntu: 
