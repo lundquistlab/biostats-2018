@@ -123,10 +123,6 @@ iris_setsoa <- subset(iris, iris$Species == "setosa") # Nottice that I used a "<
 ## If you are just interested in Petal.Length of setosa, you can just subset that column
 iris$Petal.Length[iris$Species == "setosa"]
 
-## If you want to export your subsetted data, you can do that easily too
-
-write.csv(iris_setosa, "iris_2.csv", sep = ",")
-
 #+END_SRC
 
 Notice that there are *150 rows* of data and *five columns*. 
@@ -140,6 +136,30 @@ what we would call a *factor* or a *identifier* or a *grouping
 variable* for your data. In this case, the column "Species" 
 indicates from what species of iris the data was collected. 
 There are a total of three species (three factors) in this data set.
+
+** Part 5: Exporting data
+
+You can also export your new data to your project directory:
+
+#+BEGIN_SRC R :exports code
+## If you want to export your subsetted data, you can do that easily too
+write.csv(iris_setosa, "iris_2.csv", rownames = FALSE)
+#+END_SRC
+
+*However*, adding or editing files will mess up your next =PULL= because your 
+local directory now does not match the repository. The best way to deal with is to 
+tell Git to *IGNORE* that file. That will insure that your work is saved on your 
+local directory but will not conflict with
+the repository. 
+
+To do this, navigate to the top-right frame of your RStudio window and chose the =Git= tab.
+You should see a list of files that you added/changed. If you changed a file but do not want
+to save it (e.g. my_first_script.R) but do not want to keep those changes, engage in the check
+mark then press the =Gear= button and select =Revert=
+
+If you want to save it, make sure the file is a different name (e.g. "iris_2.csv"), engage the
+check mark then press the =Gear= button and select =Ignore=. This will produce a ".gitignore" file. 
+Now your next =Pull= should work without an issue.
 
 ** Part 5: Basic calculations
 

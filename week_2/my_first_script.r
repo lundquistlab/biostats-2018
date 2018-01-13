@@ -37,14 +37,14 @@ nlevels(iris$Species)
 levels(iris$Species)
 
 ## If you just want the "setosa" data, you can subset the data
-iris_setsoa <- subset(iris, iris$Species == "setosa") # Nottice that I used a "<-" to assign a name to my new data
+iris_setosa <- subset(iris, iris$Species == "setosa") # Nottice that I used a "<-" to assign a name to my new data
 
 ## If you are just interested in Petal.Length of setosa, you can just subset that column
 iris$Petal.Length[iris$Species == "setosa"]
 
 ## If you want to export your subsetted data, you can do that easily too
 
-write.csv(iris_setosa, "iris_2.csv", sep = ",")
+write.csv(iris_setosa, "iris_2.csv", row.names = FALSE)
 
 ## Calculations
 x <- 1
