@@ -31,7 +31,7 @@ is great for streamlining your work flow: you type in what you want R
 to do, press =ENTER= and off you go.
 
 *But* once you press =ENTER=, that code is basically gone
-and you better home you didn't have any typos!
+and you better hope you didn't have any typos!
 
 The *BETTER* way of working with R is writing a plain text document 
 that has all of the R commands you will need and saving it with a ".R" 
@@ -53,7 +53,7 @@ can write your code and use a keyboard shortcut, =Ctl + Enter= in
 Windows, =Cmd + Enter= in MacOS to evaluate that code right
 in an R console session.
 
-R scripts generally have two parts: <code>code you want to run</code>, 
+R scripts generally have two parts: =code you want to run=, 
 and annotations to code using comments, =#=.
 
 Here is an example script:
