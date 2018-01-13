@@ -143,23 +143,18 @@ You can also export your new data to your project directory:
 
 #+BEGIN_SRC R :exports code
 ## If you want to export your subsetted data, you can do that easily too
-write.csv(iris_setosa, "iris_2.csv", rownames = FALSE)
+write.csv(iris_setosa, "~/NewDirectory/iris_2.csv", rownames = FALSE)
 #+END_SRC
 
-*However*, adding or editing files will mess up your next =PULL= because your 
-local directory now does not match the repository. The best way to deal with is to 
-tell Git to *IGNORE* that file. That will insure that your work is saved on your 
-local directory but will not conflict with
-the repository. 
-
-To do this, navigate to the top-right frame of your RStudio window and chose the =Git= tab.
-You should see a list of files that you added/changed. If you changed a file but do not want
-to save it (e.g. my_first_script.R) but do not want to keep those changes, engage in the check
-mark then press the =Gear= button and select =Revert=
-
-If you want to save it, make sure the file is a different name (e.g. "iris_2.csv"), engage the
-check mark then press the =Gear= button and select =Ignore=. This will produce a ".gitignore" file. 
-Now your next =Pull= should work without an issue.
+If you add or edit files in your project directory, it 
+ will mess up your next =PULL= because your 
+local directory now does not match the repository. 
+The best way to deal with is to 
+tell save anything that is not from the repository in another directory
+on your machine. If you are using a lab computer, this could be in your network drive
+or on a USB stick. That will ensure that your work is saved on your 
+local directory and it will not conflict with
+what is in the repository. 
 
 ** Part 5: Basic calculations
 
