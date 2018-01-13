@@ -26,6 +26,27 @@ sub-directories in the repository. For each folder, there will be
 a =.org= file with all the information you need as well as any data or
 supplementary material.
 
+** What is R?
+
+R is a statical software environment for the analysis of data and the
+production of graphics (R-project.org). Using R can be daunting for
+the uninitiated because it is entirely command-line based. However, 
+this is the greatest strength that R has because 
+it is extremely flexible, customizable, and (for most things) fast. R
+is also free and open-source, meaning that there are a lot of 
+people out there that maintain the project and write 
+specific statistical packages. There are plenty of other programs
+(SAS, SPSS, MATLAB, Excel) out there that you can use to do data 
+analysis but they are expensive and less customizable. 
+There are other software environments out there too (Python, Julia)
+for those who need a little more speed and flexibility. R brings to the table some very
+powerful analysis and graphics production tools in a package that is pretty
+easy to use (once you get the hang of it). It is an attractive program for
+students and professionals alike and is continuing to grow in interest and
+complexity. Skills in data analysis with R is now becoming a must for many looking 
+for graduate or professional positions and is a great addition to a
+resumé.
+
 ** Install Git
 
 Whether you are using MacOS, Windows, or Linux, you will need to

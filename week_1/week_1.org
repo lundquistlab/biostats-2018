@@ -151,7 +151,7 @@ is an example script that you can paste into =my_first_script.R=:
 R is basically a calculator with a lot of functions built into it. 
 For everything you can calculate,there is probably a function:
 
-#+BEGIN_SRC R :exports both
+#+BEGIN_SRC R :exports code
 x <- 1
 y <- 2
 
