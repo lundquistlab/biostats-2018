@@ -156,7 +156,7 @@ or on a USB stick. That will ensure that your work is saved on your
 local directory and it will not conflict with
 what is in the repository. 
 
-** Part 5: Basic calculations
+** Part 6: Basic calculations
 
 Now that we have some data, we can do some basic calculations on that data. Here 
 is an example script that you can paste into =my_first_script.R=:
