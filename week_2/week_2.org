@@ -1,9 +1,7 @@
-#+TITLE: Week 1: Introduction to R
+#+TITLE: Week 2: Introduction to R
 #+AUTHOR: Matthew Lundquist
 #+EMAIL: mlundqu1@binghamton.edu
 #+DATE: 2018-1-12
-
-* Introduction to R and RStudio, 
 
 ** Part 1: Install R, RStudio, and Git and clone this repo
 
@@ -161,6 +159,7 @@ sum(x, y)
 
 You can also do basic statistics, including calculating averages by combining functions
 or using the built-in function =mean()=:
+
 #+BEGIN_SRC R :exports code
 ## What is the average Sepal.Length in Iris?
 sum(iris$Sepal.Length) / length(iris$Sepal.Length) # or
