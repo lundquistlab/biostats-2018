@@ -1,0 +1,388 @@
+#+TITLE: Homework 1 in R
+#+AUTHOR: Matthew Lundquist
+#+DATE: 2018-1-18
+
+** Question 1
+
+*Plot a histogram using data in Example 1.4a (P10), using group size of 3.* 
+
+First we need to import the data.
+
+I decided to copy the data into a .csv file named =aphids.csv=
+
+#+BEGIN_SRC R :session :results output :exports code
+
+aphids <- read.csv("aphids.csv", h = T)
+
+#+END_SRC
+
+#+RESULTS:
+
+Now you need to plot a histogram. You could do this manually, but
+that is rather counterproductive when using a tool like R. Instead,
+we are going to use the built-in function =hist()= to generate a 
+histogram for us. 
+
+But first  we need to get the data into a form that R can understand. 
+The historgram function only works with a single x vector.
+We therefore need to use the =rep()= function to create a vector
+that is the length of the number of observations (424).
+
+#+BEGIN_SRC R :session :results output :exports code
+
+obs.aphids <- rep(x = aphids$n.aphids, times = aphids$n.plants)
+
+#+END_SRC
+
+#+RESULTS:
+
+Now we can plot our histogram. Note: The question asks for groups of 3, we can 
+do that by manually setting the =breaks()= for the histogram. We also need the 
+histogram to start counting at =0= not =1=, so we set =right=F=
+
+#+BEGIN_SRC R :session :results output graphics :file plots/hist1.png
+
+x <- c(0, 3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42) # Notice we need to add 42 in there
+
+hist(obs.aphids, xlab = "# of aphids observed", ylab = "Frequency", main = "Frequency of aphids on plants", 
+     breaks = x, right = F, col = "blue")
+
+#+END_SRC
+
+#+RESULTS:
+[[file:plots/hist1.png]]
+
+[[plots/hist1.png]]
+
+However, notice that the bars are together. This would work great if this
+was a continuous histogram, but it is not!
+
+For a nominal histogram, we need to do a little extra work. We need
+to install and load the package =ggplot2= and use its built-in histogram.
+
+#+BEGIN_SRC R :session :results output graphics :file plots/hist2.png
+install.packages("ggplot2") # Choose a mirror that is geographically close
+library(ggplot2)
+
+ggplot(data.frame(obs.aphids), aes(x = factor(obs.aphids))) +
+  geom_histogram(fill = "blue", stat = "count") +
+  xlab("# of aphids observed") +
+  ylab("Frequency") +
+  ggtitle("Frequency of aphids on plants") +
+  scale_y_continuous(expand = c(0, 0)) + # Sit bars on x-axis
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+  panel.background = element_blank(), axis.line = element_line(colour = "black")) # Remove  ugly gridlines  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+
+#+END_SRC
+
+#+RESULTS:
+[[file:plots/hist2.png]]
+
+[[plots/hist2.png]]
+
+Notice that the histogram is giving us the counts for each of the 42 groups.
+This is NOT what we want. Instead, we need to group the data that way that we want
+to. In this case, we want groups of three.
+
+#+BEGIN_SRC R :session :results output graphics :file plots/hist3.png
+
+## Make a vector with the levels we are combining
+
+obs.levels <- c(rep("0-2", length(as.numeric(obs.aphids[obs.aphids <= 2 ]))),
+                rep("3-5", length(as.numeric(obs.aphids[obs.aphids >= 3 & obs.aphids <= 5 ]))),
+                rep("6-8", length(as.numeric(obs.aphids[obs.aphids >= 6 & obs.aphids <= 8 ]))),
+                rep("9-11", length(as.numeric(obs.aphids[obs.aphids >= 9 & obs.aphids <= 11 ]))),
+                rep("12-14", length(as.numeric(obs.aphids[obs.aphids >= 12 & obs.aphids <= 14 ]))),
+                rep("15-17", length(as.numeric(obs.aphids[obs.aphids >= 15 & obs.aphids <= 17 ]))),
+                rep("18-20", length(as.numeric(obs.aphids[obs.aphids >= 18 & obs.aphids <= 20 ]))),
+                rep("21-23", length(as.numeric(obs.aphids[obs.aphids >= 21 & obs.aphids <= 23 ]))),
+                rep("24-26", length(as.numeric(obs.aphids[obs.aphids >= 24 & obs.aphids <= 26 ]))),
+                rep("27-29", length(as.numeric(obs.aphids[obs.aphids >= 27 & obs.aphids <= 29 ]))),
+                rep("30-32", length(as.numeric(obs.aphids[obs.aphids >= 30 & obs.aphids <= 32 ]))),
+                rep("33-35", length(as.numeric(obs.aphids[obs.aphids >= 33 & obs.aphids <= 35 ]))),
+                rep("36-38", length(as.numeric(obs.aphids[obs.aphids >= 36 & obs.aphids <= 38 ]))),
+                rep("39-41", length(as.numeric(obs.aphids[obs.aphids >= 39 & obs.aphids <= 41 ]))))
+
+obs.levels <- factor(obs.levels, levels = unique(obs.levels)) ## This keeps R from alphabetizing the levels  
+
+ggplot(data.frame(obs.levels), aes(x = obs.levels)) +
+  geom_histogram(fill = "blue", stat = "count") +
+  xlab("# of aphids observed") +
+  ylab("Frequency") + 
+  ggtitle("Frequency of aphids on plants") +
+  scale_y_continuous(expand = c(0, 0)) + # Sit bars on x-axis
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+  panel.background = element_blank(), axis.line = element_line(colour = "black")) # Remove  ugly gridlines
+
+#+END_SRC
+
+#+RESULTS:
+[[file:plots/hist3.png]]
+
+ [[plots/hist3.png]]
+
+*Is the histogram different in pattern compared to Fig. 1.6?*
+
+This question you need to answer on your own
+
+** Question 2 
+
+*Plot a histogram of student height using the 2006 class data*
+
+Again we need to take the data and put it in a form that data can read.
+
+#+BEGIN_SRC R :session :results output :exports code
+students <- read.csv("students.csv", h = T)
+#+END_SRC
+
+#+RESULTS:
+
+Then we can use the built-in histogram function of R.
+
+#+BEGIN_SRC R :session :results output output graphics :file plots/hist4.png
+
+hist(students$height, xlab = "Height (in)", ylab = "Frequency", main = "Student heights", breaks = 7)
+
+#+END_SRC
+
+#+RESULTS:
+[[file:plots/hist4.png]]
+
+ [[plots/hist4.png]]
+
+This takes into account for all students; however, we also have information about
+the sex of the students. We can split the data into two histograms:
+
+#+BEGIN_SRC R :session :results output  output graphics :file plots/hist5.png
+hist(students$height[students$sex == "F"], xlab = "Height (in)", ylab = "Frequency", main = "Female student heights", breaks = 7)
+#+END_SRC
+
+#+RESULTS:
+[[file:plots/hist5.png]]
+
+ [[plots/hist5.png]]
+
+#+BEGIN_SRC R :session :results output  output graphics :file plots/hist6.png
+hist(students$height[students$sex == "M"], xlab = "Height (in)", ylab = "Frequency", main = "Male student heights", breaks = 7)
+#+END_SRC
+
+#+RESULTS:
+[[file:plots/hist6.png]]
+
+ [[plots/hist6.png]]
+
+We can also combine the two, but it is not particualrly easy or beautiful in R...
+
+#+BEGIN_SRC R :session :results output  output graphics :file plots/hist7.png
+library(ggplot2)
+
+ggplot(students, aes(height, fill = sex)) + 
+  geom_histogram(binwidth = 1, col = "black") +
+  xlab("Height (in)") +
+  ylab("Frequency") + 
+  ggtitle("Student heights") +
+  scale_x_continuous(limits = c(62, 74), breaks = 61:74) + # Sit bars on x-axis
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 10), breaks = 1:10) + # Sit bars on x-axis
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+  panel.background = element_blank(), axis.line = element_line(colour = "black")) # Remove  ugly gridlines
+#+END_SRC
+
+#+RESULTS:
+[[file:plots/hist7.png]]
+
+ [[plots/hist7.png]]
+** Question 3
+
+Exercises 3.1, 3.2, 3.3, and 3.5
+
+Everything from these four exercises can be done manually on a calculator, manually in R, or
+using built-in R functions 
+
+I assume that you know how to use a calculator and you can use the basic =+, -, *, and /= functions in R.
+Here are the built-in functions to answer these questions
+
+3.1:
+
+#+BEGIN_SRC R :session :results output :exports code
+
+weights <- c(3.1, 3.4, 3.6, 3.7, 4.0) # Make data vector
+
+sum(weights[1:4]) # 13.8
+sum(weights[2:4]) # 10.7
+sum(weights[1:5]) # 17.8
+sum(weights) # 17.8
+
+#+END_SRC
+
+#+RESULTS:
+: [1] 13.8
+: [1] 10.7
+: [1] 17.8
+: [1] 17.8
+
+3.2:
+
+#+BEGIN_SRC R :session :results output :exports code
+
+weights <- c(3.1, 3.4, 3.6, 3.7, 4.0) # Make data vector
+
+mean(weights) # 3.56
+median(weights) # 3.6
+
+#+END_SRC
+
+#+RESULTS:
+: [1] 3.56
+: [1] 3.6
+
+3.3:
+
+#+BEGIN_SRC R :session :results output :exports code
+
+ages <- c(32.2, 37.5, 41.7, 53.8, 50.2, 48.2, 46.3, 65.0, 44.8)
+
+mean(ages) # 46.63
+sort(ages) # If you want to put them in order
+median(ages) # 46.3
+
+ages.2 <-  c(32.2, 37.5, 41.7, 53.8, 50.2, 48.2, 46.3, 46.5, 44.8)
+mean(ages.2) # 44.58
+sort(ages.2) # If you want to put them in order
+median(ages.2) # 46.3
+
+#+END_SRC
+
+#+RESULTS:
+: [1] 46.63333
+: [1] 32.2 37.5 41.7 44.8 46.3 48.2 50.2 53.8 65.0
+: [1] 46.3
+: [1] 44.57778
+: [1] 32.2 37.5 41.7 44.8 46.3 46.5 48.2 50.2 53.8
+: [1] 46.3
+
+3.5:
+
+#+BEGIN_SRC R :session :results output :exports code
+
+fruit <- c(1.02, 0.98, 0.91, 0.84, 0.87, 1.04, 0.079, 0.079) # We know that two are < 0.08, I arbitrarily set them to 0.079
+median(fruit) = 0.89
+
+#+END_SRC
+
+#+RESULTS:
+: [1] 0.89
+
+** Question 4
+
+Using data in Exercises 3.4, Plot a histogram, a frequency polygon, a cumulative frequency polygon, and a relative cumulative frequency polygon. 
+
+Again, we need to format the data so R can read it.
+
+#+BEGIN_SRC R :session :results output :exports code
+leaves <- read.csv("leaves.csv", h = T)
+
+# Vectorize
+obs.leaves <- rep(x = leaves$mid, times = leaves$fi)
+
+#+END_SRC
+
+#+RESULTS:
+
+Now we can get a histogram like we did before:
+#+BEGIN_SRC R :session :results output  output graphics :file plots/hist8.png
+
+library(ggplot2)
+
+ggplot(data.frame(obs.leaves), aes(obs.leaves)) + 
+  geom_histogram(binwidth = .1, col = "black") +
+  xlab("Leaf weight (g)") +
+  ylab("Frequency") + 
+  ggtitle("Leaf weights") +
+  #scale_x_continuous(limits = c(62, 74), breaks = 61:74) + # Sit bars on x-axis
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 10), breaks = 1:10) + # Sit bars on x-axis
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+  panel.background = element_blank(), axis.line = element_line(colour = "black")) # Remove  ugly gridlines
+
+#+END_SRC
+
+#+RESULTS:
+[[file:plots/hist8.png]]
+
+ [[plots/hist8.png]]
+
+We can also use =ggplot2= to make us a frequency polygon:
+
+#+BEGIN_SRC R :session :results output  output graphics :file plots/poly1.png
+
+library(ggplot2)
+
+ggplot(data.frame(obs.leaves), aes(obs.leaves)) + 
+  geom_freqpoly(binwidth = .1, col = "black") +
+  xlab("Leaf weight (g)") +
+  ylab("Frequency") + 
+  ggtitle("Leaf weights") +
+  #scale_x_continuous(limits = c(62, 74), breaks = 61:74) + # Sit bars on x-axis
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 10), breaks = 1:10) + # Sit bars on x-axis
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+  panel.background = element_blank(), axis.line = element_line(colour = "black")) # Remove  ugly gridlines
+
+#+END_SRC
+
+#+RESULTS:
+[[file:plots/poly1.png]]
+
+ [[plots/poly1.png]]
+
+As well as a cumulative frequency polygon, but it requires a little work using
+the function =cumsum()=:
+
+#+BEGIN_SRC R :session :results output  output graphics :file plots/poly2.png
+
+library(ggplot2)
+
+c.fq <- cumsum(leaves$fi) # Calculate cumulative sum
+
+ggplot(data.frame(unique(obs.leaves), c.fq), aes(x = unique(obs.leaves), c.fq)) + 
+  geom_line() +
+  geom_point() +
+  xlab("Leaf weight (g)") +
+  ylab("Cumulative Frequency") + 
+  ggtitle("Leaf weights") +
+  scale_x_continuous(limits = c(1.9, 2.8)) + # Sit bars on x-axis
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 30), breaks = 0:30*5) + # Sit bars on x-axis
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+  panel.background = element_blank(), axis.line = element_line(colour = "black")) # Remove  ugly gridlines
+
+#+END_SRC
+
+#+RESULTS:
+[[file:plots/poly2.png]]
+
+ [[plots/poly2.png]]
+
+And a relative cumulative frequency polygon, but it also requires a little work using
+the function =cumsum()=:
+
+#+BEGIN_SRC R :session :results output  output graphics :file plots/poly3.png
+
+library(ggplot2)
+
+r.c.fq <- (cumsum(leaves$fi) / sum(leaves$fi)) * 100 # Calculate relative  cumulative sum
+
+ggplot(data.frame(unique(obs.leaves), r.c.fq), aes(x = unique(obs.leaves), r.c.fq)) + 
+  geom_line() +
+  geom_point() +
+  xlab("Leaf weight (g)") +
+  ylab("Relative Cumulative Frequency (%)") + 
+  ggtitle("Leaf weights") +
+  scale_x_continuous(limits = c(1.9, 2.8)) + # Sit bars on x-axis
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 105), breaks = 0:100*10) + # Sit bars on x-axis
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+  panel.background = element_blank(), axis.line = element_line(colour = "black")) # Remove  ugly gridlines
+
+#+END_SRC
+
+#+RESULTS:
+[[file:plots/poly3.png]]
+
+ [[plots/poly3.png]]
