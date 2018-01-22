@@ -1,4 +1,4 @@
-#+TITLE: Biostatistics with R
+#+Title: Biostatistics with R
 #+AUTHOR: Matthew Lundquist
 #+EMAIL: mlundqu1@binghamton.edu
 #+DATE: 2018-1-1
@@ -83,21 +83,21 @@ what you need to do in Windows or Linux
 2.  Download the latest version of =RStudio= from 
     [[https://www.rstudio.com/products/rstudio/download/][www.RStudio.org]]
 3.  Open RStudio.app 
-    [[screenshots/macos/RStudio.png]]
+    [[./screenshots/macos/RStudio.png]]
 4.  Navigate to =File > New Project...=
-    [[screenshots/macos/new_project.png]]
+    [[./screenshots/macos/new_project.png]]
 5.  Choose =Version Control=
-    [[screenshots/macos/choose_vc.png]]
+    [[./screenshots/macos/choose_vc.png]]
 6.  Choose =Git=
-    [[screenshots/macos/choose_git.png]]
+    [[./screenshots/macos/choose_git.png]]
 7.  Set =Repository URL: https://github.com/mlundquist/biostats-2018=
     and set the =Project directory name: biostats-2018= and 
     set =~/Desktop= (or whatever directory you want to
     use) then select =Create Project=
-    [[screenshots/macos/git_location.png]]
+    [[./screenshots/macos/git_location.png]]
 8.  At this point RStudio should download everything from this GitHub
     repository into your project directory (bottom right).
-    [[screenshots/macos/project_directory.png]]
+    [[./screenshots/macos/project_directory.png]]
 9. You can now navigate folders and open files directly in
     RStudio. For example: =Open example.r= and it will open
     in the built-in text editor (top left)
@@ -106,7 +106,7 @@ what you need to do in Windows or Linux
     repository frequently. To download the new content, you simply need to
     =Pull= the code from the repository. Do this by
     navigating to =Tools > Version Control > Pull Branches= 
-    [[screenshots/macos/pull_branches.png]]
+    [[./screenshots/macos/pull_branches.png]]
 
 When in doubt, you can also get the files off of GitHub by downloading them
 manually. To do this:
