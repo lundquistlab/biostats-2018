@@ -264,8 +264,8 @@ median(ages.2) # 46.3
 
 #+BEGIN_SRC R :session :results output :exports code
 
-fruit <- c(1.02, 0.98, 0.91, 0.84, 0.87, 1.04, 0.079, 0.079) # We know that two are < 0.08, I arbitrarily set them to 0.079
-median(fruit) = 0.89
+fruit <- c(1.02, 0.98, 0.91, 0.84, 0.87, 1.04, 0.79, 0.79) # We know that two are < 0.08, I arbitrarily set them to 0.079
+median(fruit) # 0.89
 
 #+END_SRC
 
