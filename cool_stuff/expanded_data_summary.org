@@ -1,0 +1,27 @@
+#+TITLE: Expanded summary function in R
+#+AUTHOR: Matthew Lundquist
+
+There is a cool functional called =summarySE()= in the =Rmsic= package. It expands the built-in =summary()= function
+by not only giving you means, but also SD, SE, and CI. You can also do summaries by groups of data. Here is a simple example using
+the height data from last week:
+
+#+BEGIN_SRC R :session :results output
+
+## Uncomment below if  you need to install Rmisc
+## install.packages("Rmisc")
+library(Rmisc)
+
+students <- read.csv("../homework_2/students.csv", h = T)
+
+summarySE(students, measurevar = "height", groupvar = "sex") ## Note: You can have multiple groupvars using c() to make a list
+
+##    sex  N   height       sd        se       ci
+##  1   F 15 66.20000 2.651145 0.6845228 1.468155
+##  2   M 14 70.35714 2.951066 0.7887056 1.703895
+
+#+END_SRC
+
+#+RESULTS:
+:   sex  N   height       sd        se       ci
+: 1   F 15 66.20000 2.651145 0.6845228 1.468155
+: 2   M 14 70.35714 2.951066 0.7887056 1.703895

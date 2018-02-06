@@ -8,3 +8,9 @@ y <- seq(11,20, 0.5)
 ## Plot these
 
 plot(x, y)
+
+function()
+
+c()
+
+"STUFF"
