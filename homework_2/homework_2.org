@@ -219,11 +219,11 @@ sd(x) / mean(x) # 0.012 or 1.2%
 trees <- read.csv("trees.csv", h = T) ## Load in tree data
 n <- sum(trees$frequency)
 n # 97
-pi <- trees$frequency/n
+p_i <- trees$frequency/n
 
 ## A (H')
 
-trees.H <- -1 * sum((pi)*log10(pi))
+trees.H <- -1 * sum((p_i)*log10(p_i))
 trees.H # 0.595
 
 ## We can check this in R using the package vegan()
