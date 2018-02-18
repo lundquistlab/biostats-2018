@@ -12,6 +12,7 @@ Instructor: Weixing Zhu S3-391
 
 TA: Matthew Lundquist S3-359
 
+
 If you are new to GitHub, you should check out this 
 [[http://readwrite.com/2013/09/30/understanding-github-a-journey-for-beginners-part-1][blog post by Lauren Orsini]].
 However, for this class you only need to know how to download content from the
