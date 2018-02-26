@@ -1,4 +1,4 @@
-#+TITLE: Levine Test in R
+#+TITLE: Levene Test in R
 #+AUTHOR: Matt Lundquist
 
 Performing a Levene Test for equal variances is pretty straight forward in R
