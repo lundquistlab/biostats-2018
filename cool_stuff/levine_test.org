@@ -1,0 +1,52 @@
+#+TITLE: Levine Test in R
+#+AUTHOR: Matt Lundquist
+
+Performing a Levene Test for equal variances is pretty straight forward in R
+
+First we need some data, directly from example 8.9 in the Zar textbook:
+
+#+BEGIN_SRC R :session :results output
+
+## Data points for trap 1 and trap 2 
+t1 <- c(41, 35, 33, 36, 40, 46, 31, 37, 34, 30, 38)
+t2 <- c(52, 57, 62, 55, 64, 57, 56, 55, 60, 59)
+
+## Create groups for each trap type
+trap1 <- rep("trap1", length(t1))
+trap2 <- rep("trap2", length(t2)) 
+
+## Combine them in a data frame
+data <- data.frame(c(t1, t2), c(trap1, trap2))
+colnames(data) <- c("months", "trap")
+
+## Make sure R knows that "trap" is a grouping variable (factor)
+data$trap <- as.factor(data$trap)
+#+END_SRC
+
+#+RESULTS:
+
+Now we can run a Levene Test. There are a bunch of variations to
+the Levine Test depending on what you want to accomplish. In this
+case we are going to use the traditional Levene Test. Notice that R uses an
+F value, not a t value like the book does. However, P is similar to
+what is seen in the book.
+
+#+BEGIN_SRC R :session :results output
+
+## install.packages("car")
+library(car)
+leveneTest(data$months, data$trap, center = "mean")
+
+## Levene's Test for Homogeneity of Variance (center = median: "mean")
+##       Df F value Pr(>F)
+## group  1  0.5438 0.4699
+##       19
+
+#+END_SRC
+
+#+RESULTS:
+: Levene's Test for Homogeneity of Variance (center = "mean")
+:       Df F value Pr(>F)
+: group  1  0.4927 0.4913
+:       19
+* 
