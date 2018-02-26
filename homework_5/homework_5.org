@@ -1,0 +1,144 @@
+#+TITLE: Homework 5
+#+AUTHOR: Matt Lundquist
+
+
+* Question 8.1
+
+Data:
+#+BEGIN_SRC R :session :results output
+
+male <- c(220.1, 218.6, 229.6, 228.8, 222.0, 224.1, 226.5)
+female <- c(223.4, 221.5, 230.2, 224.3, 223.8, 230.8)
+
+#+END_SRC 
+
+#+RESULTS:
+
+Two-sample t test
+
+#+BEGIN_SRC R :session :results output
+## You can use the two-sample t test function in R, not the var.equal = TRUE
+
+t.test(male, female, var.equal = TRUE)
+
+##	Two Sample t-test
+
+## data:  male and female
+## t = -0.62681, df = 11, p-value = 0.5436
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -6.423378  3.575759
+## sample estimates:
+## mean of x mean of y 
+##  224.2429  225.6667
+
+#+END_SRC 
+
+* Question 8.2
+
+Data:
+
+#+BEGIN_SRC R :session :results output
+
+northern <- c(120, 113, 125, 118, 116, 114, 119)
+southern <- c(116, 117, 121, 114, 116, 118, 123, 120)
+
+#+END_SRC 
+
+#+RESULTS:
+
+This is a one-tailed test, Ho northern => southern 
+#+BEGIN_SRC R :session :results output
+
+t.test(northern, southern, alternative = "less", var.equal = TRUE)
+
+##	Two Sample t-test
+
+## data:  northern and southern
+## t = -0.14673, df = 13, p-value = 0.4428
+## alternative hypothesis: true difference in means is less than 0
+## 95 percent confidence interval:
+##     -Inf 2.964954
+## sample estimates:
+## mean of x mean of y 
+##  117.8571  118.1250
+
+#+END_SRC 
+
+#+RESULTS:
+
+* Question 8.4
+
+Notice that we are testing a mean of 10, not 0:
+#+BEGIN_SRC R :session :results output
+
+x1 <- 334.6
+x2 <- 349.8
+
+u <- 10
+
+ss1 <- 364.34
+ss2 <- 286.78
+
+n1 <- 19
+n2 <- 24 
+
+sp <-  (ss1 + ss2) / ((n1-1) + (n2-1))
+se <- sqrt(sp/n1 + sp/n2)
+
+t <- (abs(x1 - x2)-u) / se
+t # 4.25
+
+#+END_SRC 
+
+#+RESULTS:
+: [1] 4.249257
+
+* Question 8.6
+
+#+BEGIN_SRC R :session :results output
+
+n <- 14
+ss1 <- 244.66
+ss2 <- 289.18
+
+sp <-  (ss1 + ss2) / (n+n-2)
+
+## Sample size estimation
+
+d <- 2
+
+## Guess sample size of 50, df = 98
+  
+t <- 1.984
+nn <- (2 * sp * t^2) / (2)^2 # 40.41
+
+## Guess ample size of 41, df = 80
+t <- 1.990
+nn <- (2 * sp * t^2) / (2)^2 # 40.65
+
+## 41 is your minimum sample size
+
+#+END_SRC 
+
+#+RESULTS:
+: [1] 40.655
+
+* Question 8.8
+
+#+BEGIN_SRC R :session :results output
+
+var.test(male, female, alternative = "two.sided")
+
+##	F test to compare two variances
+
+## data:  male and female
+## F = 1.2108, num df = 6, denom df = 5, p-value = 0.8522
+## alternative hypothesis: true ratio of variances is not equal to 1
+## 95 percent confidence interval:
+##  0.1735298 7.2499801
+## sample estimates:
+## ratio of variances 
+##           1.210839
+
+#+END_SRC 
