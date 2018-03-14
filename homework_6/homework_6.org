@@ -1,0 +1,153 @@
+#+TITLE: Homework 6
+#+AUTHOR: Matthew Lundquist
+* Question 8.12
+
+Data
+
+#+BEGIN_SRC R :session :results output
+male <- c(220.1, 218.6, 229.6, 228.8, 222.0, 224.1, 226.5)
+female <- c(223.4, 221.5, 230.2, 224.3, 223.8, 230.8)
+#+END_SRC
+
+#+RESULTS:
+
+
+Ranking
+
+#+BEGIN_SRC R :session :results output
+sort(male) # 218.6 220.1 222.0 224.1 226.5 228.8 229.6
+sort(female) #  221.5 223.4 223.8 224.3 230.2 230.8
+
+male.rank <- c(1, 2, 4, 7, 9, 10, 11)
+female.rank <- c(3, 5, 6, 8, 12, 13)
+#+END_SRC
+
+#+RESULTS:
+: [1] 218.6 220.1 222.0 224.1 226.5 228.8 229.6
+: [1] 221.5 223.4 223.8 224.3 230.2 230.8
+
+Mann-Whitney test
+
+#+BEGIN_SRC R :session :results output
+
+n1 <- length(male)
+n2 <- length(female)
+
+R1 <- sum(male.rank)
+R2 <- sum(female.rank)
+
+U <- n1*n2 + ((n1*(n1+1))/2) - R1 # U = 26
+Up <- n1*n2 - U # U' = 16 
+#+END_SRC
+
+#+RESULTS:
+: [1] 16
+
+U_{0.05(2), 6, 7} = 36. 26 < 36, fail to reject H_{o}. 
+P > 0.20
+In R (W here is  U'):
+
+#+BEGIN_SRC R :session :results output
+
+wilcox.test(male,female)
+ 
+# 	Wilcoxon rank sum test
+# 
+# data:  male and female
+# W = 16, p-value = 0.5338
+# alternative hypothesis: true location shift is not equal to 0
+
+#+END_SRC
+
+#+RESULTS:
+: 
+: 	Wilcoxon rank sum test
+: 
+: data:  male and female
+: W = 16, p-value = 0.5338
+: alternative hypothesis: true location shift is not equal to 0
+
+* Question 8.13 
+
+Data
+
+#+BEGIN_SRC R :session :results output
+
+northern <- c(120, 113, 125, 118, 116, 114, 119)
+southern <- c(116, 117, 121, 114, 116, 118, 123, 120)
+
+#+END_SRC
+
+#+RESULTS:
+
+Ranking
+
+#+BEGIN_SRC R :session :results output
+northern.rank <- c(11.5, 1, 15, 8.5, 5, 2.5, 10)
+southern.rank <- c(5, 7, 13, 2.5, 5, 8.5, 14, 11.5)
+#+END_SRC
+
+#+RESULTS:
+
+Mann-Whitney test
+
+#+BEGIN_SRC R :session :results output
+
+n1 <- length(northern)
+n2 <- length(southern)
+
+R1 <- sum(northern.rank)
+R2 <- sum(southern.rank)
+
+U <- n1*n2 + ((n1*(n1+1))/2) - R1 # U = 30.5
+Up <- n1*n2 - U # U' = 25.5
+#+END_SRC
+
+
+This is a one-tailed test:
+
+U_{0.05(1), 7, 8} = 43. 30.5 < 43, fail to reject H_{o}. 
+P > 0.10
+
+* Question 8.14
+
+#+BEGIN_SRC R :session :results output
+normal <- c(248, 236, 269, 254, 249, 251, 260, 245, 239, 255)
+normalx <- normal*1.5 
+intersex <- c(380, 391, 377, 392, 398, 374)
+#+END_SRC
+
+#+RESULTS:
+
+Ranking
+
+#+BEGIN_SRC R :session :results output
+normalx.rank <- c(4, 1, 16, 10, 5, 7, 12, 3, 2, 11)
+intersex.rank <- c(9, 13, 8, 14, 15, 6)
+#+END_SRC
+
+#+RESULTS:
+
+Mann-Whitney test
+
+#+BEGIN_SRC R :session :results output
+
+n1 <- length(normalx)
+n2 <- length(intersex)
+
+R1 <- sum(normalx.rank)
+R2 <- sum(intersex.rank)
+
+U <- n1*n2 + ((n1*(n1+1))/2) - R1 # U = 44
+Up <- n1*n2 - U # U' = 16
+#+END_SRC
+
+#+RESULTS:
+: [1] 44
+: [1] 16
+
+U_{0.05(2), 10, 6} = 48. 44 < 49, fail to reject H_{o}. 
+0.10 < P < 0.20
+
+#+BEGIN_SRC R :session :results output
+#+END_SRC
