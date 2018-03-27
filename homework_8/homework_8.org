@@ -1,0 +1,213 @@
+#+TITLE: Homework 8
+#+AUTHOR: Matthew Lundquist
+
+* Question 10.5 
+
+Running a Kruskal-Wallis Test in R is very simple. Here we use the data from [[https://github.com/mlundquist/biostats-2018/blob/master/homework_7/homework_7.org][Homework 7]]
+
+Data:
+
+#+BEGIN_SRC R :session :results output
+
+feb <- c(4.7, 4.9, 5.0, 4.8, 4.7)
+may <- c(4.6, 4.4, 4.3, 4.4, 4.1, 4.2)
+aug <- c(4.8, 4.7, 4.6, 4.4, 4.7, 4.8)
+nov <- c(4.9, 5.2, 5.4, 5.1, 5.6)
+
+
+y <- c(feb, may, aug, nov)
+x <- c(rep("feb", length(feb)), rep("may", length(may)), rep("aug", length(aug)), rep("nov", length(nov)))
+food <- data.frame(y, x)
+food$x <- factor(food$x)
+
+#+END_SRC
+
+#+RESULTS:
+
+Kruskal-Wallis test. Note that it is giving you the corrected value:
+
+#+BEGIN_SRC R :session :results output
+
+kruskal.test(y ~ x, data = food)
+
+##  	Kruskal-Wallis rank sum test
+##
+## data:  y by x
+## Kruskal-Wallis chi-squared = 17.256, df = 3, p-value = 0.000626
+
+#+END_SRC
+
+#+RESULTS:
+: 
+: 	Kruskal-Wallis rank sum test
+: 
+: data:  y by x
+: Kruskal-Wallis chi-squared = 17.256, df = 3, p-value = 0.000626
+
+* Question 8.12 with Kruskal-Wallis (data from [[https://github.com/mlundquist/biostats-2018/blob/master/homework_6/homework_6.org][Homework 6]]):
+
+#+BEGIN_SRC R :session :results output
+
+male <- c(220.1, 218.6, 229.6, 228.8, 222.0, 224.1, 226.5)
+female <- c(223.4, 221.5, 230.2, 224.3, 223.8, 230.8)
+
+y <- c(male, female)
+x <- c(rep("male", length(male)), rep("female", length(female)))
+data <- data.frame(y, x)
+data$x <- factor(data$x)
+
+
+kruskal.test(y ~ x, data = data)
+
+## 	Kruskal-Wallis rank sum test
+## 
+## data:  y by x
+## Kruskal-Wallis chi-squared = 0.5102, df = 1, p-value = 0.4751
+
+
+#+END_SRC
+
+#+RESULTS:
+: 
+: 	Kruskal-Wallis rank sum test
+: 
+: data:  y by x
+: Kruskal-Wallis chi-squared = 0.5102, df = 1, p-value = 0.4751
+
+* Question 11.1
+
+We cannot use the built-in function in R using just the sample means but if we had
+the raw data, you would use this function:
+
+#+BEGIN_SRC R :session :results output
+
+model.1 <- aov(y ~ x, data = data)
+TukeyHSD(model.1, "x", conf.level=0.95)
+
+#+END_SRC
+
+You can also run a Student-Newman-Keuls (SNK) test in R using the ~SNK.test~ function from the ~agricolae~ package:
+
+#+BEGIN_SRC R :session :results output
+
+## install.packages("agricolae")
+
+library(agricolae)
+model.1 <- aov(y ~ x, data = data)
+SNK.test(model.1,"x", console = TRUE)
+
+#+END_SRC
+
+#+RESULTS:
+
+* Question 11.2
+
+Tukey Test using 10.1 data: 
+
+#+BEGIN_SRC R :session :results output
+
+feb <- c(4.7, 4.9, 5.0, 4.8, 4.7)
+may <- c(4.6, 4.4, 4.3, 4.4, 4.1, 4.2)
+aug <- c(4.8, 4.7, 4.6, 4.4, 4.7, 4.8)
+nov <- c(4.9, 5.2, 5.4, 5.1, 5.6)
+
+
+y <- c(feb, may, aug, nov)
+x <- c(rep("feb", length(feb)), rep("may", length(may)), rep("aug", length(aug)), rep("nov", length(nov)))
+food <- data.frame(y, x)
+food$x <- factor(food$x)
+
+model.1 <- aov(y ~ x, data = food)
+TukeyHSD(model.1, "x")
+
+##  Tukey multiple comparisons of means
+##    95% family-wise confidence level
+
+## Fit: aov(formula = y ~ x, data = food)
+
+## $x
+##               diff         lwr        upr     p adj
+## feb-aug  0.1533333 -0.16599282  0.4726595 0.5405724
+## may-aug -0.3333333 -0.63779887 -0.0288678 0.0290758
+## nov-aug  0.5733333  0.25400718  0.8926595 0.0004209
+## may-feb -0.4866667 -0.80599282 -0.1673405 0.0021859
+## nov-feb  0.4200000  0.08647471  0.7535253 0.0109631
+## nov-may  0.9066667  0.58734052  1.2259928 0.0000013
+
+#+END_SRC
+
+#+RESULTS:
+
+* Question 11.5
+
+Scheff\`{e}'s Test can be done in R with the ~agricolae~ package:
+
+#+BEGIN_SRC R :session :results output
+
+library(agricolae)
+scheffe.test(model.1, "x", console=TRUE)
+
+## Study: model.1 ~ "x"
+
+## Scheffe Test for y 
+
+## Mean Square Error  : 0.03481481 
+
+## x,  means
+
+##            y       std r Min Max
+## aug 4.666667 0.1505545 6 4.4 4.8
+## feb 4.820000 0.1303840 5 4.7 5.0
+## may 4.333333 0.1751190 6 4.1 4.6
+## nov 5.240000 0.2701851 5 4.9 5.6
+
+## Alpha: 0.05 ; DF Error: 18 
+## Critical Value of F: 3.159908 
+
+## Groups according to probability of means differences and alpha level( 0.05 )
+
+## Means with the same letter are not significantly different.
+
+##            y groups
+## nov 5.240000      a
+## feb 4.820000      b
+## aug 4.666667      b
+## may 4.333333      c
+
+#+END_SRC
+
+#+RESULTS:
+
+* Question 11.6
+
+We can run a Nemenyi Test in R using the ~PMCMR~ package:
+
+#+BEGIN_SRC R :session :results output
+
+library(PMCMR)
+
+g1 <- c(8, 4, 3, 5, 1)
+g2 <- c(10, 6, 9, 11, 2)
+g3 <- c(14, 13, 7, 12, 15)
+
+y <- c(g1, g2, g3)
+x <- c(rep("group1", length(g1)), rep("group2", length(g2)), rep("group3", length(g3)))
+data <- data.frame(y, x)
+
+posthoc.kruskal.nemenyi.test(y ~ x, data = data )
+
+## 	Pairwise comparisons using Tukey and Kramer (Nemenyi) test	
+##                    with Tukey-Dist approximation for independent samples 
+
+## data:  y by x 
+
+##        group1 group2
+## group2 0.452  -     
+## group3 0.013  0.234 
+
+## P value adjustment method: none
+
+
+#+END_SRC
+
+#+RESULTS:
