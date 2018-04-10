@@ -1,0 +1,177 @@
+#+TITLE: Homework 9
+#+AUTHOR: Matthew Lundquist
+
+
+* 12.1 : Two-way ANOVA
+
+I put the data in a .csv file for ease of use 
+
+#+BEGIN_SRC R :session :results output
+
+data <- read.csv("amino.csv", h = T)
+
+#+END_SRC
+
+#+RESULTS:
+
+The arduous process of calculating the F statistics for the two factors and the 
+interaction by hand:
+
+#+BEGIN_SRC R :session :results output
+
+## Cell totals
+
+s.m1 <- sum(data$amino[data$species == "s1" & data$sex == "male"]) 
+s.m2 <- sum(data$amino[data$species == "s2" & data$sex == "male"]) 
+s.m3 <- sum(data$amino[data$species == "s3" & data$sex == "male"]) 
+
+
+s.f1 <- sum(data$amino[data$species == "s1" & data$sex == "female"]) 
+s.f2 <- sum(data$amino[data$species == "s2" & data$sex == "female"]) 
+s.f3 <- sum(data$amino[data$species == "s3" & data$sex == "female"]) 
+
+## Cell means
+
+m.m1 <- mean(data$amino[data$species == "s1" & data$sex == "male"]) 
+m.m2 <- mean(data$amino[data$species == "s2" & data$sex == "male"]) 
+m.m3 <- mean(data$amino[data$species == "s3" & data$sex == "male"]) 
+
+m.f1 <- mean(data$amino[data$species == "s1" & data$sex == "female"]) 
+m.f2 <- mean(data$amino[data$species == "s2" & data$sex == "female"]) 
+m.f3 <- mean(data$amino[data$species == "s3" & data$sex == "female"]) 
+
+## Treacment means
+## Species
+species1.mean <- sum(c(s.m1, s.f1)) / 8
+species2.mean <- sum(c(s.m2, s.f2)) / 8
+species3.mean <- sum(c(s.m3, s.f3)) / 8
+
+## Sex
+male.mean <- sum(c(s.m1, s.m2, s.m3)) / 12
+female.mean <- sum(c(s.f1, s.f2, s.f3)) / 12
+
+## ANOVA stats
+
+grand.mean <- sum(c(s.m1, s.m2, s.m3, s.f1, s.f2, s.f3)) / 24
+
+## SS and MS
+
+total.SS <- sum((data$amino - grand.mean)^2)
+cell.SS <- 4 * sum((c(m.m1, m.m2, m.m3, m.f1, m.f2, m.f3) - grand.mean)^2)
+error.SS <- total.SS - cell.SS 
+
+species.SS <- 8 * sum((c(species1.mean, species2.mean, species3.mean) - grand.mean)^2)
+species.MS <- species.MS / 2
+
+sex.SS <- 12 * sum((c(male.mean, female.mean) - grand.mean)^2)
+sex.MS <- sex.SS / 1
+
+species.sex.SS <- cell.SS - species.SS - sex.SS
+species.sex.MS <- species.sex.SS / 2
+
+error.MS <- error.SS / 16
+
+## F values
+
+species.F <- species.MS / error.MS
+sex.F <- sex.MS / error.MS
+species.sex.F <- species.sex.MS / error.MS
+
+#+END_SRC
+
+You can check your values but using the ~summary(aov())~ function in R: 
+
+#+BEGIN_SRC R :session :results output
+
+## ANOVA in R
+
+summary(aov(amino ~ species * sex, data = data))
+
+##              Df Sum Sq Mean Sq F value   Pr(>F)    
+## species      2  55.26   27.63  13.082  0.00031 ***
+## sex          1 138.72  138.72  65.679 2.04e-07 ***
+## species:sex  2   6.89    3.45   1.631  0.22331    
+## Residuals   18  38.02    2.11                     
+## ---
+## Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+#+END_SRC
+
+#+RESULTS:
+
+Run a Bartlett test by hand:
+
+
+#+BEGIN_SRC R :session :results output
+
+## Bartlett Test
+
+## Species
+
+s1 <- data$amino[data$species == "s1" & data$sex == "male"]
+s2 <- data$amino[data$species == "s2" & data$sex == "male"]
+s3 <- data$amino[data$species == "s3" & data$sex == "male"]
+s4 <- data$amino[data$species == "s1" & data$sex == "female"]
+s5 <- data$amino[data$species == "s2" & data$sex == "female"]
+s6 <- data$amino[data$species == "s3" & data$sex == "female"]
+
+
+s.df <- c(3, 3, 3, 3, 3, 3)
+
+SS.i <- c(sum((s1 - mean(s1))^2), sum((s2 - mean(s2))^2), sum((s3 - mean(s3))^2),  sum((s4 - mean(s4))^2),  sum((s5 - mean(s5))^2),  sum((s6 - mean(s6))^2))
+var.s <- SS.i / 3
+
+sp2.s <- sum(SS.i)/sum(s.df)
+
+s.B <- (log(sp2.s) * sum(s.df)) - (sum((s.df) * log(var.s)))
+
+s.C <- 1 + (1 / (3 * (6 - 1))) * (sum(1 / s.df) - (1 / sum(s.df)))
+
+s.Bc <- s.B / s.C
+#+END_SRC
+
+#+RESULTS:
+
+* 13.1 : Log10 transformation w/ 95% CE
+#+BEGIN_SRC R :session :results output
+
+y <- c(3.67, 4.01, 3.85, 3.92, 3.71, 3.88, 3.74, 3.82)
+y.t <- log10(y + 1)
+y.t.m <- mean(y.t)
+y.t.s <- sd(y.t)
+y.t.se <- y.t.s / sqrt(8)
+
+y.ce <- 2.365 * y.t.se
+
+#+END_SRC
+* 13.2 : Arcsine transformation w/ 95% CE
+
+#+BEGIN_SRC R :session :results output
+
+p <- c(0.733, 0.804, 0.746, 0.781, 0.772, 0.793)
+p.t <- asin(sqrt(p)) * 180/pi # The second part converts radians to degrees
+p.t.m <- mean(p.t)
+p.t.s <- sd(p.t)
+p.t.se <- p.t.s / sqrt(6)
+
+p.ce <- 2.571 * p.t.se
+
+sin((61.476 + p.ce) * pi/180)^2 # We need to again convert from radians to degrees again 
+sin((61.476 - p.ce) * pi/180)^2
+#+END_SRC
+
+* 13.3 : Square-root transformation w/ 95% CE
+
+#+BEGIN_SRC R :session :results output
+
+s <- c(4, 6, 3, 8, 10, 3)
+s.t <- sqrt(s + 0.5)
+s.t.m <- mean(s.t)
+s.t.s <- sd(s.t)
+s.t.se <- s.t.s / sqrt(6)
+s.t.ce <- 2.571 * s.t.se
+
+(2.428 - s.t.ce)^2 - .5
+(2.428 + s.t.ce)^2 - .5
+
+#+END_SRC
