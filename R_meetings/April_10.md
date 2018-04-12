@@ -8,14 +8,7 @@ Author: Matthew Lundquist
 I put the data in a .csv file for ease of use
 
 ```r
-amino.data <- read.csv("../homework_9/amino.csv", h = T)
-amino.data
-```
-
-## ANOVA in R
-
-```r
-ad <- amino.data
+ad <- read.csv("../homework_9/amino.csv", h = T)
 
 ## y ~ x1 + x2... xn + x1:x2, data = data
 
@@ -26,8 +19,9 @@ model.2 <- lm(amino ~ species * sex, data = ad) ## This is equivalent but uses s
 ## Check our assumptions using a plot
 anova(model.1)
 par(mfrow = c(2,2))
+png("plots/anova.png")
 plot(model.1)
-
+dev.off()
 ## Check for equal variances
 
 bartlett.test(amino ~ species, data = ad)
