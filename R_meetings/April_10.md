@@ -18,9 +18,8 @@ model.2 <- lm(amino ~ species * sex, data = ad) ## This is equivalent but uses s
 
 ## Check our assumptions using a plot
 anova(model.1)
-png("plots/anova.png")
+png("plots/anova_plot.png")
 par(mfrow = c(2,2))
-
 plot(model.1)
 dev.off()
 ## Check for equal variances
