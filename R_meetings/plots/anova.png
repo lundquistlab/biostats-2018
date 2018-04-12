@@ -1,0 +1,12 @@
+Analysis of Variance Table
+
+Response: amino
+            Df  Sum Sq Mean Sq F value    Pr(>F)    
+species      2  55.261  27.630 13.0821 0.0003103 ***
+sex          1 138.720 138.720 65.6794 2.037e-07 ***
+species:sex  2   6.891   3.445  1.6313 0.2233107    
+Residuals   18  38.018   2.112                      
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Error in kruskal.test.formula(amino ~ species * sex, data = ad) : 
+  'formula' should be of the form response ~ group
