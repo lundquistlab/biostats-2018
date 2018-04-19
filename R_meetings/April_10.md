@@ -14,7 +14,7 @@ ad <- read.csv("../homework_9/amino.csv", h = T)
 
 ## LM method
 model.1 <- lm(amino ~ species + sex + species:sex, data = ad)
-model.2 <- lm(amino ~ species * sex, data = ad) ## This is equivalent but uses short-hand
+model.2 <- lm(amino ~ species * sex, data = ad) ## This is equivalent to model.1 but uses short-hand
 
 ## Check our assumptions using a plot
 anova(model.1)
