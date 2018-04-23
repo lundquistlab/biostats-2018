@@ -37,7 +37,7 @@ summary(aov(model.temp))
 
 ```
 
-## b
+## c
 ```r
 ## T test
 n <- length(x) # or length(y)
@@ -71,19 +71,19 @@ summary(model.temp)
 ## F-statistic: 308.9 on 1 and 6 DF,  p-value: 2.177e-06
 ```
 
-## c
+## d
 ```r
 ## Standard error of estimates
 sqrt(EMS) # 0.17
 ```
 
-## d
+## e
 ```r
 ## Coefficient of determination
 R2 <- RSS/SYY # R^2 = 0.981
 ```
 
-## e
+## f
 ```r
 ## 95% confidence intervals
 ## t_0.5(2), 6  * Sb
